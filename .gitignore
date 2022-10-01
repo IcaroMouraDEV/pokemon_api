@@ -1,0 +1,5 @@
+# ignorar os arquivos
+node_modules
+
+# a API ainda não envolve o banco de dados.
+src/data
