@@ -65,4 +65,19 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [result] = await elementDB.remove(Number(id));
+    if (result.affectedRows > 0) {
+      res.status(HTTP_OK_STATUS).json({ message: `Element with id ${id} deleted with success` });
+    } else {
+      res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Element Not Found' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(HTTP_INTERNAL_ERROR_STATUS).json({ message: err.sqlMessage });
+  }
+});
+
 module.exports = router;

@@ -12,9 +12,12 @@ const update = (id, element) => conn.execute(`
   WHERE id = ?
   `, [element, id]);
 
+const remove = (id) => conn.execute('DELETE FROM element WHERE id = ?', [id]);
+
 module.exports = {
   insert,
   findAll,
   findById,
   update,
+  remove,
 };
