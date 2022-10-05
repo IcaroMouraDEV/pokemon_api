@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     const [result] = await elementDB.insert(element);
     console.log(result);
     res.status(HTTP_CREATED_STATUS).json({
-      message: `create the ${element} element with id: ${result.insertId}`,
+      message: `create the ${element} element with id ${result.insertId}`,
     });
   } catch (err) {
     console.log(err);
