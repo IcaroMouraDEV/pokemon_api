@@ -2,12 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/pokemon', (_req, res) => {
-  res.status(200).json({ message: 'tudo ok' });
+const HTTP_OK_STATUS = 200;
+
+router.get('/', (_req, res) => {
+  res.status(HTTP_OK_STATUS).json({ message: 'tudo ok' });
 });
 
-router.get('/pokemon/:id', (_req, res) => {
-  res.status(200).json({ message: 'bulbassaur' });
+router.get('/:id', (_req, res) => {
+  res.status(HTTP_OK_STATUS).json({ message: 'bulbassaur' });
 });
 
 module.exports = router;

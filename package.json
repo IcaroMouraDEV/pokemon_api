@@ -21,6 +21,7 @@
     "sinon": "14.0"
   },
   "dependencies": {
-    "express": "4.17"
+    "express": "4.17",
+    "mysql2": "2.3"
   }
 }
