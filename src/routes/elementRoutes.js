@@ -1,5 +1,5 @@
 const express = require('express');
-const elementDB = require('../db/elementDB');
+const { elementModel } = require('../models');
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ const HTTP_INTERNAL_ERROR_STATUS = 500;
 router.post('/', async (req, res) => {
   const { element } = req.body;
   try {
-    const [result] = await elementDB.insert(element);
+    const [result] = await elementModel.insert(element);
     console.log(result);
     res.status(HTTP_CREATED_STATUS).json({
       message: `create the ${element} element with id ${result.insertId}`,
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (_req, res) => {
   try {
-    const [result] = await elementDB.findAll();
+    const [result] = await elementModel.findAll();
     res.status(HTTP_OK_STATUS).json(result);
   } catch (err) {
     console.log(err);
@@ -37,7 +37,7 @@ router.get('/', async (_req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const [result] = await elementDB.findById(Number(id));
+    const [result] = await elementModel.findById(Number(id));
     if (result) {
       res.status(HTTP_OK_STATUS).json(result);
     } else {
@@ -53,7 +53,7 @@ router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { element } = req.body;
   try {
-    const [result] = await elementDB.update(Number(id), element);
+    const [result] = await elementModel.update(Number(id), element);
     if (result) {
       res.status(HTTP_OK_STATUS).json({ message: `Element with id ${id} updated is successful` });
     } else {
@@ -68,7 +68,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const [result] = await elementDB.remove(Number(id));
+    const [result] = await elementModel.remove(Number(id));
     if (result.affectedRows > 0) {
       res.status(HTTP_OK_STATUS).json({ message: `Element with id ${id} deleted with success` });
     } else {
