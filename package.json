@@ -23,6 +23,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "4.17",
+    "joi": "17.6",
     "mysql2": "2.3"
   }
 }

@@ -49,6 +49,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/:name', async (req, res) => {
+  const { name } = req.params;
+  try {
+    const [result] = await elementModel.findByName(Number(name));
+    if (result) {
+      res.status(HTTP_OK_STATUS).json(result);
+    } else {
+      res.status(HTTP_NOT_FOUND_STATUS).json({ message: 'Element Not Found' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(HTTP_INTERNAL_ERROR_STATUS).json({ message: err.sqlMessage });
+  }
+});
+
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { element } = req.body;

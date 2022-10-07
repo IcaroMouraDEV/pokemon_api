@@ -6,5 +6,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: pokeworld
+    volumes:
+      - database-sql:/var/lib/mysql
     ports:
       - "3010:3306"
+
+volumes:
+  database-sql:

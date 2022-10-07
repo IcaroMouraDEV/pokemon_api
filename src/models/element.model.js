@@ -5,6 +5,7 @@ const insert = (element) => conn.execute('INSERT INTO element (element) VALUES (
 const findAll = () => conn.execute('SELECT * FROM element');
 
 const findById = (id) => conn.execute('SELECT * FROM element WHERE id = ?', [id]);
+const findByName = (name) => conn.execute('SELECT * FROM element WHERE name = ?', [name]);
 
 const update = (id, element) => conn.execute(`
   UPDATE element
@@ -18,6 +19,7 @@ module.exports = {
   insert,
   findAll,
   findById,
+  findByName,
   update,
   remove,
 };
