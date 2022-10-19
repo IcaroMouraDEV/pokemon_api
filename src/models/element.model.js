@@ -1,25 +1,42 @@
 const conn = require('./connection');
 
-const insert = (element) => conn.execute('INSERT INTO element (element) VALUES (?)', [element]);
+const insert = async (element) => {
+  const [{ insertId }] = await conn.execute('INSERT INTO element (element) VALUES (?)', [element]);
 
-const findAll = () => conn.execute('SELECT * FROM element');
+  return insertId;
+};
 
-const findById = (id) => conn.execute('SELECT * FROM element WHERE id = ?', [id]);
-const findByName = (name) => conn.execute('SELECT * FROM element WHERE name = ?', [name]);
+const findAll = async () => {
+  const [result] = await conn.execute('SELECT * FROM element');
 
-const update = (id, element) => conn.execute(`
-  UPDATE element
-  SET element = ?
-  WHERE id = ?
-  `, [element, id]);
+  return result;
+};
 
-const remove = (id) => conn.execute('DELETE FROM element WHERE id = ?', [id]);
+const findById = async (id) => {
+  const [[result]] = await conn.execute('SELECT * FROM element WHERE id = ?', [id]);
+
+  return result;
+};
+
+const update = async (element, id) => {
+  const [result] = await conn.execute(
+    'UPDATE element SET element = ? WHERE id = ?',
+    [element, id],
+  );
+
+  return result;
+};
+
+const remove = async (id) => {
+  const [result] = await conn.execute('DELETE FROM element WHERE id = ?', [id]);
+
+  return result;
+};
 
 module.exports = {
   insert,
   findAll,
   findById,
-  findByName,
   update,
   remove,
 };
