@@ -28,6 +28,8 @@
     "express": "4.17",
     "joi": "17.6",
     "mysql2": "2.3",
-    "nyc": "15.1"
+    "nyc": "15.1",
+    "sequelize": "^6.25.3",
+    "sequelize-cli": "^6.5.1"
   }
 }

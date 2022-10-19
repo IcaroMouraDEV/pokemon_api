@@ -1,4 +1,4 @@
-const { elementModel } = require('../models');
+const { Element } = require('../models');
 const { validationElementSchema } = require('./validations/validationsInputsValue');
 
 const createElement = async (element) => {
@@ -6,23 +6,22 @@ const createElement = async (element) => {
 
   if (validationResult.type) return validationResult;
 
-  const allElements = await elementModel.findAll();
-  console.log(allElements);
+  const allElements = await Element.findAll();
   const elementExists = allElements.find((e) => e.element.includes(element));
   if (elementExists) return { type: 'error', message: 'element exist' };
 
-  const insertId = await elementModel.insert(element);
-  return { type: null, message: `element registry with id ${insertId}` };
+  const { id } = await Element.create({ element });
+  return { type: null, message: `element registry with id ${id}` };
 };
 
 const getAllElements = async () => {
-  const message = await elementModel.findAll();
+  const message = await Element.findAll();
 
   return { type: null, message };
 };
 
 const getElementById = async (id) => {
-  const message = await elementModel.findById(id);
+  const message = await Element.findByPk(id);
 
   if (!message) return { type: 'not found', message: 'Element not found' };
 
@@ -34,23 +33,28 @@ const updateElement = async (element, id) => {
 
   if (validationResult.type) return validationResult;
 
-  const result = await elementModel.findById(id);
+  const result = await Element.findByPk(id);
 
   if (!result) return { type: 'not found', message: 'Element not found' };
 
-  await elementModel.update(element, id);
+  await Element.update(
+    { element },
+    { where: { id } },
+  );
 
-  const message = await elementModel.findById(id);
+  const message = await Element.findByPk(id);
 
   return { type: null, message };
 };
 
 const deleteElement = async (id) => {
-  const result = await elementModel.findById(id);
+  const result = await Element.findByPk(id);
 
   if (!result) return { type: 'not found', message: 'Element not found' };
 
-  await elementModel.remove(id);
+  await Element.destroy(
+    { where: { id } },
+  );
 
   return { type: null, message: [] };
 };
