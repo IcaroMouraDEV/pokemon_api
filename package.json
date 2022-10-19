@@ -7,7 +7,8 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
-    "test": "mocha tests/**/*.test.js --exit"
+    "test": "mocha tests/**/*.test.js --exit",
+    "coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha tests/unit/**/*.js --exit"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "dotenv": "^16.0.1",
     "express": "4.17",
     "joi": "17.6",
-    "mysql2": "2.3"
+    "mysql2": "2.3",
+    "nyc": "15.1"
   }
 }
