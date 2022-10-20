@@ -1,6 +1,3 @@
 # ignorar os arquivos
 node_modules
 .env
-**/migrations
-**/seeders
-**/models
