@@ -43,10 +43,10 @@
     "containerId": "",
     "name": "http://localhost:3002/element/19",
     "url": "http://localhost:3002/element/1",
-    "method": "PUT",
+    "method": "GET",
     "sortNum": 0,
     "created": "2022-10-19T22:53:06.142Z",
-    "modified": "2022-10-20T03:35:31.923Z",
+    "modified": "2022-10-20T18:23:14.450Z",
     "headers": [],
     "params": [],
     "body": {

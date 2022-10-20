@@ -8,7 +8,7 @@
     "dev": "nodemon src/server.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "test": "mocha tests/**/*.test.js --exit",
-    "coverage": "nyc --all --include src/models/**.model.js --include src/services/**.service.js --include src/controllers/**.controller.js mocha tests/unit/**/*.js --exit"
+    "coverage": "nyc --all --include src/services/**.service.js --include src/controllers/**.controller.js mocha tests/unit/**/*.js --exit"
   },
   "keywords": [],
   "author": "",
