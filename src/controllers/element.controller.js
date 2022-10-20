@@ -17,17 +17,18 @@ const getAllElements = async (_req, res) => {
 
 const getElementByIdOrName = async (req, res) => {
   const { id } = req.params;
+
+  if (id.length > 2) {
+    const element = await elementService.getElementByName(id);
+    
+    if (element.type) return res.status(404).json({ message: element.message });
+    
+    return res.status(200).json(element.message);
+  }
+
   const { type, message } = await elementService.getElementById(id);
 
-  if (type) {
-    const elements = await elementService.getAllElements();
-    const element = elements.message
-      .find((e) => e.element.toUpperCase().includes(id.toUpperCase()));
-    
-    if (!element) return res.status(404).json({ message });
-    
-    return res.status(200).json(element);
-  }
+  if (type) return res.status(404).json({ message });
 
   res.status(200).json(message);
 };
@@ -49,7 +50,7 @@ const removeElement = async (req, res) => {
 
   if (type) return res.status(404).json({ message });
 
-  res.status(200).json(message);
+  res.status(204).json(message);
 };
 
 module.exports = {

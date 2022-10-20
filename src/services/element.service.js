@@ -2,12 +2,13 @@ const { Element } = require('../models');
 const { validationElementSchema } = require('./validations/validationsInputsValue');
 
 const createElement = async (element) => {
-  const validationResult = validationElementSchema(element);
+  const validationResult = validationElementSchema({ element });
 
   if (validationResult.type) return validationResult;
 
   const allElements = await Element.findAll();
-  const elementExists = allElements.find((e) => e.element.includes(element));
+  const elementExists = allElements.find((e) => e.element.toUpperCase()
+    .includes(element.toUpperCase()));
   if (elementExists) return { type: 'error', message: 'element exist' };
 
   const { id } = await Element.create({ element });
@@ -28,8 +29,16 @@ const getElementById = async (id) => {
   return { type: null, message };
 };
 
+const getElementByName = async (element) => {
+  const message = await Element.findOne({ where: { element } });
+
+  if (!message) return { type: 'not found', message: 'Element not found' };
+
+  return { type: null, message };
+};
+
 const updateElement = async (element, id) => {
-  const validationResult = validationElementSchema(element);
+  const validationResult = validationElementSchema({ element });
 
   if (validationResult.type) return validationResult;
 
@@ -63,6 +72,7 @@ module.exports = {
   createElement,
   getAllElements,
   getElementById,
+  getElementByName,
   updateElement,
   deleteElement,
 };
