@@ -6,10 +6,26 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: pokeworld
-    volumes:
-      - database-sql:/var/lib/mysql
     ports:
       - "3306:3306"
-
-volumes:
-  database-sql:
+  api:
+    container_name: api
+    image: node:16
+    restart: always
+    ports:
+      - 3001:3001
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=pokeworld
+      - MYSQL_HOST=localhost
+      - SERVER_PORT=3001
+    volumes:
+      - ./:/usr/app
+    working_dir: /usr/app
+    command: bash
+    # As duas opções abaixo correspondem ao -it
+    tty: true # -t
+    stdin_open: true #-i 
+    depends_on:
+      - mysql
