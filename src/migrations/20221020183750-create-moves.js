@@ -51,6 +51,10 @@ module.exports = {
         allowNull: true,
         type: Sequelize.INTEGER
       },
+      effect: {
+        allowNull: false,
+        type: Sequelize.STRING(1000)
+      }
     });
   },
 

@@ -170,11 +170,11 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3002/move",
-    "url": "http://localhost:3002/move",
+    "url": "http://localhost:3002/move/100",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-23T03:12:50.786Z",
-    "modified": "2022-10-23T03:57:44.764Z",
+    "modified": "2022-10-24T01:46:44.073Z",
     "headers": [],
     "params": [],
     "tests": []

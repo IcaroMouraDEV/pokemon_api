@@ -6,11 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     categoryId: { type: DataTypes.INTEGER, foreignKey: true },
     power: DataTypes.INTEGER,
     accuracy: DataTypes.INTEGER,
+    effect: DataTypes.STRING,
   },
   {
-    timestamps: false,
-    tableName: 'moves',
-    underscored: true, 
+    timestamps: false, tableName: 'moves', underscored: true, 
   });
 
   Move.associate = (models) => {

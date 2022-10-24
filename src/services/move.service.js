@@ -16,6 +16,7 @@ const getAllMoves = async () => {
       category,
       power: item.power,
       accuracy: item.accuracy,
+      effect: item.effect,
     };
   });
 
@@ -24,8 +25,8 @@ const getAllMoves = async () => {
 
 const getById = async (id) => {
   const data = await Move.findByPk(id);
-  const element = await Element.findByPk(data.typeId);
-  const category = await Category.findByPk(data.categoryId);
+  const { element } = await Element.findByPk(data.typeId);
+  const { category } = await Category.findByPk(data.categoryId);
 
   const message = {
     id: data.id,
@@ -34,6 +35,7 @@ const getById = async (id) => {
     category,
     power: data.power,
     accuracy: data.accuracy,
+    effect: data.effect,
   };
 
   return { type: null, message };
