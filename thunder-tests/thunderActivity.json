@@ -42,18 +42,13 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3002/element/19",
-    "url": "http://localhost:3002/element/1",
-    "method": "PUT",
+    "url": "http://localhost:3002/element",
+    "method": "GET",
     "sortNum": 0,
     "created": "2022-10-19T22:53:06.142Z",
-    "modified": "2022-10-20T03:35:31.923Z",
+    "modified": "2022-10-23T03:22:30.513Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"element\": \"Bug\"\n}",
-      "form": []
-    },
     "tests": []
   },
   {
@@ -168,6 +163,34 @@
       "raw": "{\n  \"element\": \"em breve\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "c9a61771-993f-4953-931d-d2c9b9d051ef",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3002/move",
+    "url": "http://localhost:3002/move/100",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-23T03:12:50.786Z",
+    "modified": "2022-10-24T01:46:44.073Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d15eeb2b-78d9-44c9-a22c-85bd9705dabc",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3002/elemt",
+    "url": "http://localhost:3002/elemt",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-10-23T03:13:23.728Z",
+    "modified": "2022-10-23T03:13:23.747Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
